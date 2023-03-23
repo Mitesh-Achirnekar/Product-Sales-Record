@@ -1,0 +1,16 @@
+create database Project;
+use Project;
+create table members( customer_id varchar(1) , join_date timestamp, primary key(customer_id));
+create table menu( product_id int auto_increment, product_name varchar(10), price int, primary key(product_id));
+insert into members values(1,"2002-01-04 11:06:59"),(2,"2002-02-03 16:37:25"),(3,"2004-07-21"),(4,"2005-09-10"),(5,"2011-01-30"),(6,"2017-11-09 09:38:01");
+select * from members;
+insert into menu(product_name, price) values ("Deo",180);
+insert into menu(product_name, price) values ("Shampoo",5),("Soap",50),("Brush",35),("Rice",48),("Wheat",36);
+select * from menu;
+create table sales(customer_id varchar(1), order_date date, product_id int, foreign key(customer_id) references members(customer_id), foreign key(product_id) references menu(product_id));
+insert into sales values(1,"2011-04-09",3),(2,"2013-02-01",1),(2,"2021-09-03",6),(6,"2021-10-20",4),(5,"2022-01-01",1),(3,"2022-02-12",4);
+select * from sales;
+select* from sales where product_id=4;
+select customer_id, count(product_id) from sales where customer_id=2;
+desc sales;
+desc menu;
